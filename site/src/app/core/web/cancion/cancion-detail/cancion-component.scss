@@ -1,0 +1,39 @@
+@import "../../../../../variables";
+
+.album-img {
+  max-width: 220px;
+  max-height: 220px;
+  object-fit: cover;
+  border: 2px solid var(--bs-secondary);
+}
+
+.estrella-user {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #444;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease,
+    text-shadow 0.2s ease;
+
+  user-select: none;
+}
+
+.estrella-user:hover {
+  transform: scale(1.25);
+  color: $my-primary;
+  text-shadow: 0 0 12px rgba($my-primary, 0.6);
+}
+
+.estrella-user.activa {
+  color: $my-primary;
+  text-shadow:
+    0 0 5px rgba($my-primary, 0.6),
+    0 0 12px rgba($my-primary, 0.4),
+    0 0 20px rgba($my-primary, 0.25);
+}
+
+.valoracion-media {
+  font-size: 1.5rem;
+  color: var(--bs-primary);
+}

@@ -1,0 +1,218 @@
+<div class="container d-flex justify-content-center align-items-center m-4">
+  <div class="col-12 col-md-8 col-lg-6">
+
+    <form
+      [formGroup]="usuarioForm"
+      (ngSubmit)="onSubmit()"
+      class="p-4 border border-secondary rounded-3"
+    >
+
+      <h2 class="text-center mb-4">Registro de Usuario</h2>
+
+      <div class="form-floating mb-3">
+
+        <input
+          type="text"
+          id="username"
+          placeholder="Usuario"
+          formControlName="username"
+          class="form-control"
+          [class.is-invalid]="username.invalid && (username.dirty || username.touched)"
+          [class.is-valid]="username.valid && username.value !== ''"
+        >
+
+        <label for="username">Usuario</label>
+
+        @if (username && username.invalid && (username.dirty || username.touched)) {
+
+          @if (username.errors?.['required']) {
+            <div class="invalid-feedback">
+              El usuario es obligatorio
+            </div>
+          }
+
+          @if (username.errors?.['maxlength']) {
+            <div class="invalid-feedback">
+              Máximo 50 carácteres
+            </div>
+          }
+
+          @if (username.errors?.['usernameTaken']) {
+            <div class="invalid-feedback">
+              El usuario ya existe
+            </div>
+          }
+
+        }
+
+      </div>
+
+      <div class="form-floating mb-3">
+
+        <input
+          type="password"
+          id="password"
+          placeholder="Contraseña"
+          formControlName="password"
+          class="form-control"
+          [class.is-invalid]="password.invalid && (password.dirty || password.touched)"
+          [class.is-valid]="password.valid && password.value !== ''"
+        >
+
+        <label for="password">Contraseña</label>
+
+        @if (password && password.invalid && (password.dirty || password.touched)) {
+
+          @if (password.errors?.['required']) {
+            <div class="invalid-feedback">
+              La contraseña es obligatoria
+            </div>
+          }
+
+        }
+
+      </div>
+
+      <div class="form-floating mb-3">
+
+        <input
+          type="text"
+          id="nombre"
+          placeholder="Nombre"
+          formControlName="nombre"
+          class="form-control"
+          [class.is-invalid]="nombre.invalid && (nombre.dirty || nombre.touched)"
+          [class.is-valid]="nombre.valid && nombre.value !== ''"
+        >
+
+        <label for="nombre">Nombre</label>
+
+        @if (nombre && nombre.invalid && (nombre.dirty || nombre.touched)) {
+
+          @if (nombre.errors?.['required']) {
+            <div class="invalid-feedback">
+              El nombre es obligatorio
+            </div>
+          }
+
+          @if (nombre.errors?.['maxlength']) {
+            <div class="invalid-feedback">
+              Máximo 50 carácteres
+            </div>
+          }
+
+        }
+
+      </div>
+
+      <div class="form-floating mb-3">
+
+        <input
+          type="text"
+          id="apellidos"
+          placeholder="Apellidos"
+          formControlName="apellidos"
+          class="form-control"
+          [class.is-invalid]="apellidos.invalid && (apellidos.dirty || apellidos.touched)"
+          [class.is-valid]="apellidos.valid && apellidos.value !== ''"
+        >
+
+        <label for="apellidos">Apellidos</label>
+
+        @if (apellidos && apellidos.invalid && (apellidos.dirty || apellidos.touched)) {
+
+          @if (apellidos.errors?.['required']) {
+            <div class="invalid-feedback">
+              Los apellidos son obligatorios
+            </div>
+          }
+
+          @if (apellidos.errors?.['maxlength']) {
+            <div class="invalid-feedback">
+              Máximo 100 carácteres
+            </div>
+          }
+
+        }
+
+      </div>
+
+      <div class="form-floating mb-3">
+
+        <input
+          type="email"
+          id="email"
+          placeholder="Email"
+          formControlName="email"
+          class="form-control"
+          [class.is-invalid]="email.invalid && (email.dirty || email.touched)"
+          [class.is-valid]="email.valid && email.value !== ''"
+        >
+
+        <label for="email">Email</label>
+
+        @if (email && email.invalid && (email.dirty || email.touched)) {
+
+          @if (email.errors?.['required']) {
+            <div class="invalid-feedback">
+              El email es obligatorio
+            </div>
+          }
+
+          @if (email.errors?.['email']) {
+            <div class="invalid-feedback">
+              Formato de email inválido
+            </div>
+          }
+
+          @if (email.errors?.['maxlength']) {
+            <div class="invalid-feedback">
+              Máximo 100 carácteres
+            </div>
+          }
+
+          @if (email.errors?.['emailTaken']) {
+            <div class="invalid-feedback">
+              El email ya está dado de alta
+            </div>
+          }
+
+        }
+
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <button
+            class="btn btn-outline-primary w-100 mb-4"
+            routerLink="/"
+          >
+            Cancelar
+          </button>
+        </div>
+        <div class="col-6">
+          <button
+            type="submit"
+            class="btn btn-primary w-100 mb-4"
+            [class.disabled]="usuarioForm.invalid"
+          >
+            Registrarse
+          </button>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <p>
+          ¿Ya tienes cuenta?
+          <em>
+            <a class="link" routerLink="/login">
+              Inicia sesión
+            </a>
+          </em>
+        </p>
+      </div>
+
+    </form>
+
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 1050">
+
+  @for (toast of toastService.toasts(); track toast.id) {
+
+    <ngb-toast
+      [header]="toast.title ?? 'Notification'"
+      [class]="toast.classname ?? 'bg-dark text-white'"
+      [autohide]="toast.autohide ?? true"
+      [delay]="toast.delay ?? 3000"
+      (hidden)="toastService.remove(toast.id)"
+    >
+      {{ toast.body }}
+    </ngb-toast>
+
+  }
+
+</div>

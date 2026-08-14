@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-between align-items-end border-bottom pb-2 mb-4">
+  <div routerLink="/canciones" class="clickable-header">
+    <h1 class="title-2">Explorar</h1>
+    <button class="btn btn-link p-0 text-decoration-none">Todas las canciones</button>
+  </div>
+  @if (estilos().length > 0) {
+    <div class="text-end">
+      <select
+        class="form-select w-auto"
+        (change)="onEstiloChange($event)"
+      >
+        <option value="">Todos los estilos</option>
+
+        @for (estilo of estilos(); track estilo.id) {
+          <option [value]="estilo.id">
+            {{ estilo.nombre }}
+          </option>
+        }
+      </select>
+    </div>
+  }
+</div>
+@if (novedades().length > 0) {
+  <h1 class="my-2 title">Novedades</h1>
+  <div class="row">
+    @for (novedad of novedades(); track novedad.id) {
+      <div class="col-md-2 col-sm-4 mb-3 mx-3">
+        <app-song-card [cancion]="novedad" />
+      </div>
+    }
+  </div>
+}
+@if (hits().length > 0) {
+  <h1 class="my-2 title">Las más esuchadas</h1>
+  <div class="row">
+    @for (hit of hits(); track hit.id) {
+      <div class="col-md-2 col-sm-4 mb-3 mx-3">
+        <app-song-card [cancion]="hit" />
+      </div>
+    }
+  </div>
+}
+@if (fyp().length > 0) {
+
+  <div class="mb-3 mt-2">
+
+    <h2 class="title mb-1">Para ti</h2>
+
+    @if (estilosUsuario().length > 0) {
+      <div class="d-flex align-items-center gap-2 flex-wrap">
+
+        <span class="text-secondary small">
+          Últimamente escuchas más
+        </span>
+
+        @for (estilo of estilosUsuario(); track estilo) {
+          <span class="badge rounded-pill text-bg-dark px-3 py-2 shadow-sm">
+            {{ estilo }}
+          </span>
+        }
+
+      </div>
+    }
+
+  </div>
+
+  <div class="row">
+    @for (fyp of fyp(); track fyp.id) {
+      <div class="col-md-2 col-sm-4 mb-3 mx-3">
+        <app-song-card [cancion]="fyp" />
+      </div>
+    }
+  </div>
+}

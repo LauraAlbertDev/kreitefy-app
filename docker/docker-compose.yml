@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres_db
+    restart: no
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: kreitefy_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - kreitefy-net
+
+  adminer:
+    image: adminer:4.8.1
+    container_name: adminer_ui
+    restart: no
+    ports:
+      - "8888:8080"
+    networks:
+      - kreitefy-net
+
+volumes:
+  postgres_data:
+
+networks:
+  kreitefy-net:
+    driver: bridge

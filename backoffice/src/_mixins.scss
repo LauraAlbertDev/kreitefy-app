@@ -1,0 +1,35 @@
+@mixin card-style($border-color: $primary) {
+  padding: 3rem 2rem;
+  border: 2px solid $border-color;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+  }
+}
+
+@mixin primary-button($bg-color: $primary) {
+  padding: 8px 25px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: $bg-color;
+  color: white;
+  width: 100%;
+  max-width: 250px;
+
+  &:hover {
+    background-color: darken($bg-color, 10%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}

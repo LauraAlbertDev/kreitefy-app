@@ -1,0 +1,53 @@
+<div class="container d-flex justify-content-center align-items-center m-4">
+  <div class="col-12 col-md-6 col-lg-4">
+
+    <form
+      class="text-center p-4 border border-secondary rounded-3"
+      [formGroup]="formLogin"
+      (ngSubmit)="onSubmit()"
+    >
+      <h2 class="mb-4">Iniciar Sesión</h2>
+
+      <div class="form-outline mb-4 text-start">
+        <label class="form-label">Usuario</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="username"
+        />
+      </div>
+
+      <div class="form-outline mb-4 text-start">
+        <label class="form-label">Contraseña</label>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+        />
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <button type="button" routerLink="/" class="btn btn-outline-primary btn-block mb-4">
+            Cancelar
+          </button>
+        </div>
+        <div class="col-6">
+          <button type="submit" [class.disabled]="formLogin.invalid" class="btn btn-primary btn-block mb-4">
+            Iniciar sesión
+          </button>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <p>
+          ¿No tienes usuario?
+          <em>
+            <a class="link" routerLink="/register">Registrate</a>
+          </em>
+        </p>
+      </div>
+    </form>
+
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="main-wrapper container py-5">
+  <div class="text-center mb-5">
+    <h1 class="display-4 fw-bold text-primary">Bienvenido a Kreitefy</h1>
+    <p class="lead text-muted">Panel de administración y gestión centralizada</p>
+    <hr class="w-25 mx-auto border-primary border-2 opacity-75">
+  </div>
+
+  <div class="dashboard-container row g-4 justify-content-center">
+    @for (page of pages; track $index){
+      @if ($index > 0) {
+        <div class="col-12 col-md-6 col-lg-4 d-flex">
+          <div class="card w-100 shadow-sm shadow-hover transition-all card-custom">
+            <div class="card-body d-flex flex-column p-4 text-center"> <h2 class="h4 card-title fw-semibold mb-3">{{ page.name }}</h2>
+              <p class="card-text text-secondary mb-4 flex-grow-1">
+                {{ page.desc }}
+              </p>
+
+              <button class="btn btn-outline-primary fw-medium py-2 shadow-sm mt-auto" [routerLink]='page.link'>
+                Acceder a {{ page.name }}
+                <i class="bi bi-arrow-right ms-2"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    }
+  </div>
+</div>
+

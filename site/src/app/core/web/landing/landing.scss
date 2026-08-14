@@ -1,0 +1,20 @@
+.title {
+  color: var(--bs-primary);
+  font-weight: bold;
+}
+
+.form-select {
+  border-color: var(--bs-primary);
+  color: var(--bs-secondary);
+}
+.title-2 {
+  color: var(--bs-secondary);
+}
+
+.btn-link{
+  color: var(--bs-link);
+}
+.clickable-header{
+  cursor: pointer;
+  display: inline-block;
+}

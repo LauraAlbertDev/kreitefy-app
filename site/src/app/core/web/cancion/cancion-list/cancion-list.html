@@ -1,0 +1,72 @@
+<script src="../../../../shared/navigation.ts"></script>
+<div class="container mt-4">
+  <h2 class="title mb-4 text-center">Catálogo de Canciones</h2>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <form [formGroup]="filtrosForm" class="row g-3">
+        @for (filter of filtersConfig; track filter.key) {
+          <div [class]="filter.col">
+            <label class="form-label text-light">{{ filter.label }}</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              [formControlName]="filter.key"
+              [placeholder]="filter.placeholder"
+              [ngbTypeahead]="filter.searchFn"
+              [resultFormatter]="formatter"
+              [inputFormatter]="formatter"
+              [editable]="true"
+            />
+          </div>
+        }
+
+        <div class="col-md-2">
+          <label class="form-label text-light">Estilo</label>
+          <select formControlName="idEstilo" class="form-select form-select-sm">
+            <option value="" disabled hidden>Todos los estilos</option>
+            @for (estilo of estilos(); track estilo.id) {
+              <option [value]="estilo.id">{{ estilo.nombre }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="col-md-4 d-flex align-items-end">
+          <button type="button" (click)="limpiarFiltros()" class="btn btn-outline-primary btn-sm w-100">
+            <i class="bi bi-trash"></i> Limpiar Filtros
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  @if (loaded()) {
+    <div class="row justify-content-center">
+      @for (cancion of data(); track cancion.id) {
+          <div class="col-md-2 col-sm-4 mb-3 justify-content-center">
+            <app-song-card [cancion]="cancion"/>
+          </div>
+      } @empty {
+        <div class="col-12">
+          <p class="alert custom-alert-primary text-center">No se encontraron canciones.</p>
+        </div>
+      }
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalElements()"
+        [page]="currentPage()"
+        [pageSize]="pageSize"
+        (pageChange)="onPageChange($event)"
+        [maxSize]="5"
+        [boundaryLinks]="true"
+        class="custom-pagination">
+      </ngb-pagination>
+    </div>
+  } @else {
+    <div class="alert alert-secondary text-center shadow-sm">
+      <i class="fa fa-info-circle me-2"></i> No hay datos añadidos.
+    </div>
+  }
+</div>

@@ -1,0 +1,17 @@
+<div class="card song-card border-0 shadow-sm h-100" [routerLink]="'/cancion/' + cancion.id">
+  <img
+    [src]="getImagenAlbum(cancion.imagenAlbum)"
+    class="card-img-top song-img"
+    alt="Album cover"
+  />
+
+  <div class="card-body py-2">
+    <h6 class="card-title mb-1 text-truncate">
+      {{ cancion.titulo }}
+    </h6>
+
+    <p class="card-text text-muted small mb-0 text-truncate">
+      {{ cancion.artista }}
+    </p>
+  </div>
+</div>

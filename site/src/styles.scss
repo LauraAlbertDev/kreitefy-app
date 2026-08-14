@@ -1,0 +1,31 @@
+@import 'variables';
+@import 'bootstrap/scss/functions';
+
+$dark: #232324;
+
+$body-bg: $dark;
+$content-bg: #2b2b2e;
+$body-color: #ffffff;
+
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/maps';
+
+$custom-theme-colors: (
+  "primary":   $my-primary,
+  "secondary": $my-secondary,
+  "warning":   $my-warning,
+  "success":   $my-success,
+  "danger":    $my-danger,
+  "dark":      $dark
+);
+
+$theme-colors: map-merge($theme-colors, $custom-theme-colors);
+
+$font-family-sans-serif: $my-font;
+.app-content {
+  background-color: $content-bg;
+}
+.link {
+  color: var(--bs-primary);
+}
+@import 'bootstrap/scss/bootstrap';

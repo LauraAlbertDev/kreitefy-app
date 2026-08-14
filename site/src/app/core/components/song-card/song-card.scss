@@ -1,0 +1,19 @@
+.song-card {
+  background-color: var(--bs-body-bg);
+  border-radius: var(--bs-border-radius-lg);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.song-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--bs-box-shadow-lg);
+  cursor: pointer;
+}
+
+.song-img {
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+}

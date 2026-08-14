@@ -1,0 +1,49 @@
+<nav
+  class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary border-opacity-25 position-relative">
+  <div class="container-fluid px-lg-5">
+
+    <div class="w-100 d-flex justify-content-start d-lg-none py-2">
+      <button class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto align-items-center gap-3 gap-lg-5">
+        @for (page of pages; track page.link; let idx = $index) {
+          @if (idx === middleIndex) {
+            <li class="nav-item d-none d-lg-block mb-2">
+              <a class="navbar-brand mx-0" routerLink="/">
+                <img src="assets/logo.png"
+                     alt="Kreitefy"
+                     width="100"
+                     class="d-inline-block align-middle hover-zoom transition-all">
+              </a>
+            </li>
+          }
+
+          <li class="nav-item">
+            <a class="text-white text-decoration-none" [routerLink]="page.link">
+              {{ page.name }}
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="position-absolute end-0 top-50 translate-middle-y me-3 d-none d-lg-block">
+      <button
+        type="button"
+        class="btn rounded-pill px-4 py-2 fw-bold shadow-sm transition-all"
+        [class.btn-primary]="!isLoggedIn()"
+        [class.btn-outline-primary]="isLoggedIn()"
+        (click)="handleAuthAction()">
+        {{ isLoggedIn() ? 'LOG-OUT' : 'LOG-IN' }}
+      </button>
+    </div>
+
+  </div>
+</nav>

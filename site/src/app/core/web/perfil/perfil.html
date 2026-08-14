@@ -1,0 +1,90 @@
+<div class="container m-5">
+  <div class="row justify-content-center ">
+    <div class="col-md-5">
+      <div class="border rounded-3 p-4 shadow-sm h-100">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h4 class="mb-0">Mi Perfil</h4>
+          <span class="badge rounded-pill fs-6">
+            {{ perfilForm.get('rol')?.value }}
+          </span>
+        </div>
+      <form [formGroup]="perfilForm" (ngSubmit)="onSubmit()">
+        @for (campo of fields; track campo.name) {
+          <div class="row mb-3 align-items-center">
+            <label class="col-sm-3 col-form-label fw-bold">{{ campo.label }}</label>
+            <div class="col-sm-9">
+              <input
+                [type]="campo.type"
+                class="form-control"
+                [formControlName]="campo.name"
+                [placeholder]="campo.placeholder || ''">
+              @if (perfilForm.get(campo.name)?.invalid && perfilForm.get(campo.name)?.touched) {
+                <small class="text-danger d-block mt-1">
+                  {{ obtenerMensajeError(campo.name, campo.label) }}
+                </small>
+              }
+            </div>
+          </div>
+
+        }
+        @if (perfilForm.get('confirmPassword')?.hasError('passwordsMismatch') && (perfilForm.get('confirmPassword')?.touched || perfilForm.invalid)) {
+          <div class="row mb-3">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-9"><small class="text-danger fw-bold">Las contraseñas no coinciden.</small></div>
+          </div>
+        }
+        <hr class="my-4">
+
+        <div class="row g-2">
+          <div class="col-md-6">
+            <button type="submit" class="btn btn-primary w-100">
+              Actualizar Información
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="btn btn-outline-secondary w-100" routerLink="/">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </form>
+      </div>
+    </div>
+
+    <div class="col-md-5">
+      <div class="reproducciones-container mt-4 border rounded-3 p-4 shadow-sm ">
+        <h4 class="mb-4">Historial de Reproducciones</h4>
+
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover align-middle mb-0">
+            <thead>
+            <tr>
+              <th scope="col"  class="text-white">Canción</th>
+              <th scope="col"  class="text-white">Fecha</th>
+            </tr>
+            </thead>
+            <tbody>
+              @for (repro of reproducciones; track repro.id) {
+                <tr>
+                  <td class="text-muted">
+                    {{ repro.cancionTitulo }}
+                  </td>
+                  <td class="text-muted">
+                    {{ repro.fecha | date:'dd/MM/yyyy HH:mm' }}
+                  </td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="2" class="text-center text-muted py-4">
+                    No hay reproducciones en tu historial.
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

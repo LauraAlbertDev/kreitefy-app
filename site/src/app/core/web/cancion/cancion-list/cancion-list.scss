@@ -1,0 +1,72 @@
+$pag-bg-dark: #121212;
+$pag-item-bg: #1e1e1e;
+$pag-border: #333;
+$pag-text-muted: #b3b3b3;
+$size: 45px;
+
+::ng-deep .pagination {
+  gap: 10px;
+  padding: 10px;
+
+  .page-item {
+    .page-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: $size;
+      height: $size;
+      background-color: $pag-item-bg;
+      border: 1px solid $pag-border;
+      color: $pag-text-muted;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+      &:hover:not(.disabled) {
+        background-color: lighten($pag-item-bg, 10%);
+        border-color: var(--bs-primary);
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(var(--bs-primary-rgb), 0.2);
+      }
+    }
+
+    &.active .page-link {
+      background: linear-gradient(135deg, var(--bs-primary), darken(#0d6efd, 10%));
+      border-color: transparent;
+      color: white;
+      z-index: 3;
+    }
+
+    &.disabled .page-link {
+      background-color: $pag-bg-dark;
+      color: #444;
+      opacity: 0.6;
+    }
+  }
+}
+
+.title {
+  color: var(--bs-secondary);
+}
+:host ::ng-deep {
+  .dropdown-menu {
+    .dropdown-item {
+      &:focus,
+      &:hover,
+      &.active {
+        background-color: var(--bs-primary);
+      }
+    }
+  }
+}
+select option {
+  margin: 40px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.custom-alert-primary{
+  background-color: var(--bs-secondary);
+  color: black;
+}
